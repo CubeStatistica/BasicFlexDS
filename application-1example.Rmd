@@ -11,15 +11,7 @@ output:
 library(flexdashboard)
 ```
 
-## Read Dataset 
 
-Column {data-width=350}
------------------------------------------------------------------------
-
-
-```{r}
-head(iris)
-```
 
 
 Column {.sidebar}
@@ -34,8 +26,15 @@ selectInput("Select attribute", label = "Select attribute",
 ```
 
 
-Column {data-width=350}
+Column 
 -----------------------------------------------------------------------
+
+
+
+```{r}
+head(iris)
+```
+
 
 ### Count of Species
 
