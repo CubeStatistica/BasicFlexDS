@@ -11,14 +11,28 @@ output:
 library(flexdashboard)
 ```
 
-Column {data-width=650}
+## Read Dataset 
+
+Column {data-width=350}
 -----------------------------------------------------------------------
 
-# Data Set
 
 ```{r}
 head(iris)
 ```
+
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+
+```{r}
+selectInput("Select attribute", label = "Select attribute",
+             choices = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"), selected = "Sepal.Length")
+
+
+```
+
 
 Column {data-width=350}
 -----------------------------------------------------------------------
