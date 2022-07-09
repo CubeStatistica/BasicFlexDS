@@ -2,6 +2,7 @@
 title: "Flexdashboard Example"
 output: 
   flexdashboard::flex_dashboard:
+    theme: united
     orientation: columns
     vertical_layout: fill
     runtime : shiny
