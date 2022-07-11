@@ -3,13 +3,14 @@ title: "Flexdashboard Example"
 output: 
   flexdashboard::flex_dashboard:
     theme: united
-    orientation: columns
     vertical_layout: fill
     runtime : shiny
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(tidyverse)
+library(shiny)
 ```
 
 
@@ -20,14 +21,19 @@ Column {.sidebar}
 
 
 ```{r}
-selectInput("Select attribute", label = "Select attribute",
-             choices = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"), selected = "Sepal.Length")
+
+varSelectInput("Y", "Variable_Y:",iris)
 
 
 ```
 
 
-Column 
+```{r}
+#selectInput("Y", "Variable_Y:",choices = c("Sepal.Length", "iris$Sepal.Width"), selceted= "Sepal.Length")
+```
+
+
+Column
 -----------------------------------------------------------------------
 
 
@@ -37,10 +43,25 @@ head(iris)
 ```
 
 
+
+
+## Reactive plot
+
+```{r}
+renderPlot({
+   ggplot(data = iris, aes(x= Species, y= !!input$Y))+
+  geom_line()+
+  ggtitle("Count of Species")
+    
+})  
+```
+
+Column
+-----------------------------------------------------------------------
+
 ### Count of Species
 
 ```{r}
-library(ggplot2)
 ggplot(data = iris, aes(x= Species, y= Petal.Width))+
   geom_bar(stat= "identity",  fill = "dark green")+
   geom_text(aes(label = Petal.Width), vjust = -0.2)+
