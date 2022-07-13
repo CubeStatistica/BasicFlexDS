@@ -2,8 +2,18 @@
 title: "Flexdashboard Example"
 output: 
   flexdashboard::flex_dashboard:
-  vertical_layout: fill
-  runtime : shiny
+   theme: 
+    version: 4
+    bg: "#101010"
+    fg: "#FDF7F7" 
+    primary: "#ED79F9"
+    navbar-bg: "#3ADAC6"
+    base_font: 
+    google: Prompt
+    heading_font:
+     google: Sen
+   vertical_layout: fill
+   runtime : shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -34,18 +44,12 @@ varSelectInput("Y", "Variable_Y:",iris)
 ```
 
 
-Column
+
 -----------------------------------------------------------------------
-
-
 
 ```{r}
 head(iris)
 ```
-
-
-
-
 ## Reactive plot
 
 ```{r}
@@ -77,12 +81,16 @@ ggplot(iris, aes(x="", y=Petal.Width , fill=Species)) +
   coord_polar("y", start=0)
 ```
 
-Row
----------------------------------------------------------------
+Column
+------------------------------------------------------------
 
 ```{r}
 m1 <- J48(Species~., data = iris)
 if(require("party", quietly = TRUE)) plot(m1)
 
+```
+
+```{r}
+summary(m1)
 ```
 
