@@ -2,17 +2,18 @@
 title: "Flexdashboard Example"
 output: 
   flexdashboard::flex_dashboard:
-    theme: united
-    vertical_layout: fill
-    runtime : shiny
+  vertical_layout: fill
+  runtime : shiny
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
 library(shiny)
+library(RWeka)
+library(party)
+library(bslib)
 ```
-
 
 
 
@@ -50,7 +51,7 @@ head(iris)
 ```{r}
 renderPlot({
    ggplot(data = iris, aes(x= Species, y= !!input$Y))+
-  geom_line()+
+  geom_bar(stat="identity")+
   ggtitle("Count of Species")
     
 })  
@@ -74,5 +75,14 @@ ggplot(data = iris, aes(x= Species, y= Petal.Width))+
 ggplot(iris, aes(x="", y=Petal.Width , fill=Species)) +
   geom_bar(stat="identity", width=1) +
   coord_polar("y", start=0)
+```
+
+Row
+---------------------------------------------------------------
+
+```{r}
+m1 <- J48(Species~., data = iris)
+if(require("party", quietly = TRUE)) plot(m1)
+
 ```
 
