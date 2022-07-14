@@ -34,29 +34,31 @@ varSelectInput("Y", "Variable_Y:",iris)
 #selectInput("Y", "Variable_Y:",choices = c("Sepal.Length", "iris$Sepal.Width"), selceted= "Sepal.Length")
 ```
 
-
+Column
+---------------------------------------------------------------------
 ```{r}
 head(iris)
 ```
 
-Row
----------------------------------------------------------------------
 
 ```{r}
 renderPlot({
    ggplot(data = iris, aes(x= Species, y= !!input$Y))+
   geom_bar(stat="identity")+
-  ggtitle("Count of Species")
-    
+  ggtitle("Count of Species")+
+    theme_dark()+
+    scale_fill_brewer( palette = "Set2")
 })  
 ```
 
-
+Column
+-----------------------------------------------------------------
 ```{r}
 ggplot(data = iris, aes(x= Species, y= Petal.Width))+
   geom_bar(stat= "identity",  fill = "dark green")+
   geom_text(aes(label = Petal.Width), vjust = -0.2)+
-  ggtitle("Count of Species")
+  ggtitle("Count of Species")+
+  theme_dark()
 ```
 
 
@@ -64,11 +66,16 @@ ggplot(data = iris, aes(x= Species, y= Petal.Width))+
 ```{r}
 ggplot(iris, aes(x="", y=Petal.Width , fill=Species)) +
   geom_bar(stat="identity", width=1) +
-  coord_polar("y", start=0)
+  coord_polar("y", start=0)+
+  theme_dark()
 ```
 
 Machine Learning Model
 =====================================================================
+
+
+Column
+---------------------------------------------------------------------
 
 ```{r}
 m1 <- J48(Species~., data = iris)
