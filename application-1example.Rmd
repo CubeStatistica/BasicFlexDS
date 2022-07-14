@@ -2,17 +2,7 @@
 title: "Flexdashboard Example"
 output: 
   flexdashboard::flex_dashboard:
-   theme: 
-    version: 4
-    bg: "#101010"
-    fg: "#FDF7F7" 
-    primary: "#ED79F9"
-    navbar-bg: "#3ADAC6"
-    base_font: 
-    google: Prompt
-    heading_font:
-     google: Sen
-   vertical_layout: fill
+   theme: united
    runtime : shiny
 ---
 
@@ -44,13 +34,12 @@ varSelectInput("Y", "Variable_Y:",iris)
 ```
 
 
-
------------------------------------------------------------------------
-
 ```{r}
 head(iris)
 ```
-## Reactive plot
+
+Row
+---------------------------------------------------------------------
 
 ```{r}
 renderPlot({
@@ -61,10 +50,6 @@ renderPlot({
 })  
 ```
 
-Column
------------------------------------------------------------------------
-
-### Count of Species
 
 ```{r}
 ggplot(data = iris, aes(x= Species, y= Petal.Width))+
@@ -73,7 +58,7 @@ ggplot(data = iris, aes(x= Species, y= Petal.Width))+
   ggtitle("Count of Species")
 ```
 
-### Pie Chart 
+
 
 ```{r}
 ggplot(iris, aes(x="", y=Petal.Width , fill=Species)) +
@@ -81,7 +66,7 @@ ggplot(iris, aes(x="", y=Petal.Width , fill=Species)) +
   coord_polar("y", start=0)
 ```
 
-Column
+Page
 ------------------------------------------------------------
 
 ```{r}
