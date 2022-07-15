@@ -53,9 +53,8 @@ renderPlot({
 Column
 -----------------------------------------------------------------
 ```{r}
-ggplot(data = iris, aes(x= Species, y= Petal.Width, fill = Species))+
-  geom_point()+
-  geom_text(aes(label = Petal.Width), vjust = -0.2)+
+ggplot(data = iris, aes(x= Species, y= Petal.Width,fill = Species))+
+  geom_jitter()+
   ggtitle("Count of Species")+
   scale_fill_brewer( palette = "Set2")
 ```
@@ -76,7 +75,7 @@ Machine Learning Model
 Column
 ---------------------------------------------------------------------
 
-```{r}
+
 m1 <- J48(Species~., data = iris)
 if(require("party", quietly = TRUE)) plot(m1)
 
