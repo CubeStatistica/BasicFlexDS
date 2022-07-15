@@ -43,22 +43,21 @@ head(iris)
 
 ```{r}
 renderPlot({
-   ggplot(data = iris, aes(x= Species, y= !!input$Y))+
+   ggplot(data = iris, aes(x= Species, y= !!input$Y, fill = Species))+
   geom_bar(stat="identity")+
   ggtitle("Count of Species")+
-    theme_dark()+
-    scale_fill_brewer( palette = "Set2")
+  scale_fill_brewer( palette = "Dark2")
 })  
 ```
 
 Column
 -----------------------------------------------------------------
 ```{r}
-ggplot(data = iris, aes(x= Species, y= Petal.Width))+
-  geom_bar(stat= "identity",  fill = "dark green")+
+ggplot(data = iris, aes(x= Species, y= Petal.Width, fill = Species))+
+  geom_point()+
   geom_text(aes(label = Petal.Width), vjust = -0.2)+
   ggtitle("Count of Species")+
-  theme_dark()
+  scale_fill_brewer( palette = "Set2")
 ```
 
 
@@ -67,7 +66,7 @@ ggplot(data = iris, aes(x= Species, y= Petal.Width))+
 ggplot(iris, aes(x="", y=Petal.Width , fill=Species)) +
   geom_bar(stat="identity", width=1) +
   coord_polar("y", start=0)+
-  theme_dark()
+  scale_fill_brewer( palette = "Set2")
 ```
 
 Machine Learning Model
