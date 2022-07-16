@@ -27,6 +27,7 @@ Column {.sidebar}
 varSelectInput("Y", "Variable_Y:",iris)
 
 selectInput('Species','Select Species',choice= iris$Species,selected= "setosa")
+
 ```
 
 
@@ -49,6 +50,15 @@ renderPlot({
   scale_fill_brewer( palette = "Dark2")
 })  
 ```
+
+
+
+---------------------------------------------------------------------------
+
+![alt](C:/Users/erect/Desktop/CubeStatistica/FlexDS/BasicFlexDS/iris.jpg)
+
+
+
 
 Column
 -----------------------------------------------------------------
