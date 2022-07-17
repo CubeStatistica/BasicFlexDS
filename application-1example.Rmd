@@ -13,6 +13,7 @@ library(shiny)
 library(RWeka)
 library(party)
 library(DT)
+library(gtExtras)
 ```
 
 Exploratory Data analysis
@@ -37,7 +38,10 @@ varSelectInput("Y", "Variable_Y:",iris)
 Column
 ---------------------------------------------------------------------
 ```{r}
-head(iris)
+head(iris) %>%
+  gt::gt() %>%
+  # reverse = green for low, purple for high
+  gt_hulk_col_numeric(Petal.Length:Petal.Width:Sepal.Length:Sepal.Width, reverse = FALSE) 
 ```
 
 
