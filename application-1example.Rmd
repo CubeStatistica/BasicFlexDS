@@ -41,7 +41,9 @@ Column
 head(iris) %>%
   gt::gt() %>%
   # reverse = green for low, purple for high
-  gt_hulk_col_numeric(Petal.Length:Petal.Width:Sepal.Length:Sepal.Width, reverse = FALSE) 
+  gt_hulk_col_numeric(Petal.Length:Petal.Width, reverse = FALSE)%>%
+  gt_hulk_col_numeric(Sepal.Length:Sepal.Width, reverse = FALSE)
+
 ```
 
 
