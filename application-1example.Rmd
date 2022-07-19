@@ -97,3 +97,13 @@ Column
 summary(iris)
 ```
 
+Summary and Statistics
+=============================================================================
+
+```{r}
+iris %>% 
+   gt() %>%
+  gt_color_rows(Sepal.Length:Petal.Width)
+  
+```
+
