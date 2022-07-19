@@ -13,6 +13,7 @@ library(shiny)
 library(RWeka)
 library(party)
 library(DT)
+library(gtExtras)
 ```
 
 Exploratory Data analysis
@@ -37,7 +38,13 @@ varSelectInput("Y", "Variable_Y:",iris)
 Column
 ---------------------------------------------------------------------
 ```{r}
-head(iris)
+head(iris) %>%
+  gt::gt() %>%
+  # reverse = green for low, purple for high
+  gt_hulk_col_numeric(Sepal.Length:Petal.Width, reverse = FALSE)
+  #gt_hulk_col_numeric(Sepal.Length:Sepal.Width, reverse = FALSE)
+  
+
 ```
 
 
@@ -87,6 +94,48 @@ summary(m1)
 Column
 ------------------------------------------------------------------------
 ```{r}
-datatable(iris)
+summary(iris)
+```
+
+Summary and Statistics
+=============================================================================
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+
+
+
+Column
+---------------------------------------------------------------------------
+
+```{r}
+iris %>% 
+dplyr::group_by(Species) %>%
+  # must end up with list of data for each row in the input dataframe
+  dplyr::summarize(Sepal.Length1 = list(Sepal.Length), .groups = "drop") %>%
+  gt::gt() %>%
+  gt_plt_sparkline(Sepal.Length1)
+```
+Column
+-----------------------------------------------------------------------------
+
+```{r}
+   iris %>% 
+   #gt::gt() %>%
+  #gt_color_rows(Sepal.Length:Petal.Width) %>% 
+  dplyr::select(Sepal.Length, Species) %>%
+  dplyr::mutate(Sepal.Length_max = round(Sepal.Length/max(Sepal.Length) * 100, digits = 2),
+                Sepal.Length_scaled = Sepal.Length/max(Sepal.Length) * 100) %>%
+  dplyr::mutate(Sepal.Length_unscaled = Sepal.Length) %>%
+  gt::gt() %>%
+  gt_plt_bar_pct(column = Sepal.Length_scaled, scaled = TRUE) %>%
+  gt_plt_bar_pct(column = Sepal.Length_unscaled, scaled = FALSE, fill = "blue", background = "lightblue") 
+ # cols_align("center", contains("scale")) %>%
+  ##cols_width(4 ~ px(125),
+    #         5 ~ px(125))
+ 
+
+  
 ```
 
