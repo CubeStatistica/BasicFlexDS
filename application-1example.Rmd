@@ -108,15 +108,22 @@ Column {.sidebar}
 
 Column
 ---------------------------------------------------------------------------
-```{r}
 
+```{r}
+dplyr::group_by(Species) %>%
+  # must end up with list of data for each row in the input dataframe
+  dplyr::summarize(Sepal.Length1 = list(Sepal.Length), .groups = "drop") %>%
+  gt::gt() %>%
+  gt_plt_sparkline(Sepal.Length1)
 ```
 
 
 ```{r}
-iris %>% 
+   iris %>% 
    gt::gt() %>%
-  gt_color_rows(Sepal.Length:Petal.Width)
+  gt_color_rows(Sepal.Length:Petal.Width) %>% 
+ 
+
   
 ```
 
