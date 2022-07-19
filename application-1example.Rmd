@@ -110,6 +110,7 @@ Column
 ---------------------------------------------------------------------------
 
 ```{r}
+iris %>% 
 dplyr::group_by(Species) %>%
   # must end up with list of data for each row in the input dataframe
   dplyr::summarize(Sepal.Length1 = list(Sepal.Length), .groups = "drop") %>%
